@@ -1,5 +1,6 @@
 using _2022_09_23.Entities.DbContextNamespace;
 using _2022_09_23.Services;
+using _2022_09_23.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITrainCarService, TrainCarService>();
 builder.Services.AddScoped<IAcademicService, AcademicService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddDbContext<TrainCar2DbContext>(options =>
 {

@@ -1,6 +1,7 @@
 ﻿using _2022_09_23.Entities;
 using _2022_09_23.Entities.DbContextNamespace;
 using _2022_09_23.Migrations.Academic2Db;
+using _2022_09_23.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace _2022_09_23.Services
@@ -34,9 +35,12 @@ namespace _2022_09_23.Services
     {
         private readonly Academic3DbContext _dbContext;
 
-        public AcademicService(Academic3DbContext dbContext)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AcademicService(Academic3DbContext dbContext, IUnitOfWork unitOfWork)
         {
             _dbContext = dbContext;
+            _unitOfWork = unitOfWork;
         }
         // task 4 Az alkalmazásban lehessen listázni az összes tantárgyat, oktatót, hallgatót, félévet külön-külön végpontokon.
         public List<Subject> ListSubjects(string showDeleted)
@@ -44,11 +48,11 @@ namespace _2022_09_23.Services
             // task 8: Az összes listázást végző végpontnál lehessen megadni, hogy a töröltek is legyenek a listában vagy ne
             if (showDeleted == "showDeleted")
             {
-                return _dbContext.Subjects.IgnoreQueryFilters().ToList();
+                return _unitOfWork.GetDbSet<Subject>().IgnoreQueryFilters().ToList();
             }
             else
             {
-                return _dbContext.Subjects.ToList();
+                return _unitOfWork.GetDbSet<Subject>().ToList();
             }
         }
         // task 4 Az alkalmazásban lehessen listázni az összes tantárgyat, oktatót, hallgatót, félévet külön-külön végpontokon.
@@ -57,11 +61,11 @@ namespace _2022_09_23.Services
             // task 8: Az összes listázást végző végpontnál lehessen megadni, hogy a töröltek is legyenek a listában vagy ne
             if (showDeleted == "showDeleted")
             {
-                return _dbContext.Teachers.Include(t => t.Position).IgnoreQueryFilters().ToList();
+                return _unitOfWork.GetDbSet<Teacher>().Include(t => t.Position).IgnoreQueryFilters().ToList();
             }
             else
             {
-                return _dbContext.Teachers.Include(t => t.Position).ToList();
+                return _unitOfWork.GetDbSet<Teacher>().Include(t => t.Position).ToList();
             }
         }
         // task 4 Az alkalmazásban lehessen listázni az összes tantárgyat, oktatót, hallgatót, félévet külön-külön végpontokon.
@@ -70,17 +74,19 @@ namespace _2022_09_23.Services
             // task 8: Az összes listázást végző végpontnál lehessen megadni, hogy a töröltek is legyenek a listában vagy ne
             if (showDeleted == "showDeleted")
             {
-                var return_val = _dbContext.Students
+                var return_val = _unitOfWork.GetDbSet<Student>()
                     .Include(s => s.Speciality)
                     .IgnoreQueryFilters()
                     .ToList();
+
                 return return_val;
             }
             else
             {
-                var return_val = _dbContext.Students
+                var return_val = _unitOfWork.GetDbSet<Student>()
                     .Include(s => s.Speciality)
                     .ToList();
+
                 return return_val;
             }
         }
@@ -90,11 +96,11 @@ namespace _2022_09_23.Services
             // task 8: Az összes listázást végző végpontnál lehessen megadni, hogy a töröltek is legyenek a listában vagy ne
             if (showDeleted == "showDeleted")
             {
-                return _dbContext.Semesters.IgnoreQueryFilters().ToList();
+                return _unitOfWork.GetDbSet<Semester>().IgnoreQueryFilters().ToList();
             }
             else
             {
-                return _dbContext.Semesters.ToList();
+                return _unitOfWork.GetDbSet<Semester>().ToList();
             }
         }
         // task 5: Lehessen lekérni egy oktató egy félévben oktatott összes tantárgyát
@@ -103,7 +109,7 @@ namespace _2022_09_23.Services
             // task 8: Az összes listázást végző végpontnál lehessen megadni, hogy a töröltek is legyenek a listában vagy ne
             if (showDeleted == "showDeleted")
             {
-                var return_val = _dbContext.Teachers
+                var return_val = _unitOfWork.GetDbSet<Teacher>()
                     .Where(s => s.NeptunCode == NeptunCode)
                     .Include(s => s.Subjects.Where(s => s.Semester.Name == SemesterName))
                     .IgnoreQueryFilters()
@@ -113,7 +119,7 @@ namespace _2022_09_23.Services
             }
             else
             {
-                var return_val = _dbContext.Teachers
+                var return_val = _unitOfWork.GetDbSet<Teacher>()
                     .Where(s => s.NeptunCode == NeptunCode)
                     .Include(s => s.Subjects.Where(s => s.Semester.Name == SemesterName))
                     .ToList();
@@ -127,7 +133,7 @@ namespace _2022_09_23.Services
             // task 8: Az összes listázást végző végpontnál lehessen megadni, hogy a töröltek is legyenek a listában vagy ne
             if (showDeleted == "showDeleted")
             {
-                var return_val = _dbContext.Students
+                var return_val = _unitOfWork.GetDbSet<Student>()
                     .Where(s => s.NeptunCode == NeptunCode)
                     .Include(s => s.Subjects.Where(s => s.Semester.Name == SemesterName))
                     .IgnoreQueryFilters()
@@ -137,7 +143,7 @@ namespace _2022_09_23.Services
             }
             else
             {
-                var return_val = _dbContext.Students
+                var return_val = _unitOfWork.GetDbSet<Student>()
                     .Where(s => s.NeptunCode == NeptunCode)
                     .Include(s => s.Subjects.Where(s => s.Semester.Name == SemesterName))
                     .ToList();
@@ -257,9 +263,9 @@ namespace _2022_09_23.Services
 
         public List<string> ListStudentsOfTeachers(int teacherId, int SemesterId)
         {
-            Teacher teacher = _dbContext.Teachers.Find(teacherId);
+            Teacher teacher = _unitOfWork.GetDbSet<Teacher>().Find(teacherId);
 
-            List<Subject> subjects_of_teacher = _dbContext.Subjects
+            List<Subject> subjects_of_teacher = _unitOfWork.GetDbSet<Subject>()
                 .Where(t => t.Teachers.Contains(teacher))
                 .Include(s => s.Students)
                 .Where(t => t.SemesterId == SemesterId)
@@ -274,10 +280,10 @@ namespace _2022_09_23.Services
             {
                 foreach(Student student in subject.Students)
                 {
-                    if (!student_subject_mapping.ContainsKey(student.StudentId + idx))
+                    if (!student_subject_mapping.ContainsKey(student.Id + idx))
                     {
-                        student_ids.Add(student.StudentId);
-                        int key = student.StudentId + idx;
+                        student_ids.Add(student.Id);
+                        int key = student.Id + idx;
                         student_subject_mapping.Add(key, subject.Name);
                         idx++;
                     }
@@ -286,7 +292,7 @@ namespace _2022_09_23.Services
 
             List<string> strings = new List<string>();
 
-            List<Student> all_students = _dbContext.Students.ToList();
+            List<Student> all_students = _unitOfWork.GetDbSet<Student>().ToList();
 
             List<Student> filtered_students = new List<Student>();
 
@@ -296,7 +302,7 @@ namespace _2022_09_23.Services
             {
                 foreach(int i in student_ids)
                 {
-                    if (student.StudentId == i)
+                    if (student.Id == i)
                     {
                         int key = i + idx;
                         filtered_students.Add(student);
@@ -316,9 +322,9 @@ namespace _2022_09_23.Services
         // tantárgyakon(egy hallgató csak egyszer legyen összeszámolva, hiába oktatta több tárgyon is az oktató).
         public string ListCreditsAndStudentsOfTeachers(int teacherId, int SemesterId)
         {
-            Teacher teacher = _dbContext.Teachers.Find(teacherId);
+            Teacher teacher = _unitOfWork.GetDbSet<Teacher>().Find(teacherId);
 
-            List<Subject> subjects_of_teacher = _dbContext.Subjects
+            List<Subject> subjects_of_teacher = _unitOfWork.GetDbSet<Subject>()
                 .Where(t => t.Teachers.Contains(teacher))
                 .Include(s => s.Students)
                 .Where(t => t.SemesterId == SemesterId)
@@ -335,10 +341,10 @@ namespace _2022_09_23.Services
             {
                 foreach (Student student in subject.Students)
                 {
-                    if (!student_subject_mapping.ContainsKey(student.StudentId))
+                    if (!student_subject_mapping.ContainsKey(student.Id))
                     {
-                        student_ids.Add(student.StudentId);
-                        int key = student.StudentId;
+                        student_ids.Add(student.Id);
+                        int key = student.Id;
                         student_subject_mapping.Add(key, subject.Name);
                         student_counter++;
                     }

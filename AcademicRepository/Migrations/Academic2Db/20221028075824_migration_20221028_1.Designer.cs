@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2022_09_23.Entities.DbContextNamespace;
 
@@ -10,9 +11,10 @@ using _2022_09_23.Entities.DbContextNamespace;
 namespace _2022_09_23.Migrations.Academic2Db
 {
     [DbContext(typeof(Academic3DbContext))]
-    partial class Academic2DbContextModelSnapshot : ModelSnapshot
+    [Migration("20221028075824_migration_20221028_1")]
+    partial class migration_20221028_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
