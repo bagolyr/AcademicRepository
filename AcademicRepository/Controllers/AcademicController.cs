@@ -93,24 +93,24 @@ namespace _2022_09_23.Controllers
             return Ok(_academicService.UpdateStudent(student));
         }
         [HttpGet("{id}")]
-        public IActionResult deleteteacher(int id) // task 7: lehessen logikailag törölni
+        public async Task deleteteacher(int id) // task 7: lehessen logikailag törölni
         {
-            return Ok(_academicService.DeleteTeacher(id));
+            await _academicService.DeleteTeacher(id);
         }
         [HttpGet("{id}")]
-        public IActionResult deletesubject(int id) // task 7: lehessen logikailag törölni
+        public async Task deletesubject(int id) // task 7: lehessen logikailag törölni
         {
-            return Ok(_academicService.DeleteSubject(id));
+            await _academicService.DeleteSubject(id);
         }
         [HttpGet("{id}")]
-        public IActionResult deletesemester(int id) // task 7: lehessen logikailag törölni
+        public async Task deletesemester(int id) // task 7: lehessen logikailag törölni
         {
-            return Ok(_academicService.DeleteSemester(id));
+            await _academicService.DeleteSemester(id);
         }
         [HttpGet("{id}")]
-        public IActionResult deletestudent(int id) // task 7: lehessen logikailag törölni
+        public async Task deletestudent(int id) // task 7: lehessen logikailag törölni
         {
-            return Ok(_academicService.DeleteStudent(id));
+            await _academicService.DeleteStudent(id);
         }
         [HttpGet("{id}/{SemesterId}")]
         public IActionResult teacherstudents(int id, int SemesterId) // task 10: Lehessen lekérni az oktató által adott félévben oktatott összes hallgató listáját.

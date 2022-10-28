@@ -3,6 +3,7 @@ using _2022_09_23.Entities.DbContextNamespace;
 using _2022_09_23.Migrations.Academic2Db;
 using _2022_09_23.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace _2022_09_23.Services
 {
@@ -22,10 +23,10 @@ namespace _2022_09_23.Services
         int UpdateSubject(Subject subject); // task 7, task 9
         int UpdateSemester(Semester semester); // task 7
         int UpdateStudent(Student student); // task 7
-        int DeleteTeacher(int id); // task 7
-        int DeleteSubject(int id); // task 7
-        int DeleteSemester(int id); // task 7
-        int DeleteStudent(int id); // task 7
+        Task DeleteTeacher(int id); // task 7
+        Task DeleteSubject(int id); // task 7
+        Task DeleteSemester(int id); // task 7
+        Task DeleteStudent(int id); // task 7
         int MapStudentSubject(int StudentId, int SubjectId); // task 7
         int MapSubjectTeacher(int SubjectId, int TeacherId); // task 7
         List<string> ListStudentsOfTeachers(int teacherId, int SemesterId); // task 10
@@ -215,36 +216,28 @@ namespace _2022_09_23.Services
             return _dbContext.SaveChanges();
         }
         // task 7: lehessen logikailag törölni
-        public int DeleteTeacher(int id)
+        public async Task DeleteTeacher(int id)
         {
-            Teacher teacher = _dbContext.Teachers.Find(id);
-            teacher.Deleted = true;
-            _dbContext.Teachers.Update(teacher);
-            return _dbContext.SaveChanges();
+            Teacher teacher = await _unitOfWork.GetRepository<Teacher>().DeleteSoft(id);
+            await _unitOfWork.SaveChangesAsync();
         }
         // task 7: lehessen logikailag törölni
-        public int DeleteSubject(int id)
+        public async Task DeleteSubject(int id)
         {
-            Subject subject = _dbContext.Subjects.Find(id);
-            subject.Deleted = true;
-            _dbContext.Subjects.Update(subject);
-            return _dbContext.SaveChanges();
+            Subject subject = await _unitOfWork.GetRepository<Subject>().DeleteSoft(id);
+            await _unitOfWork.SaveChangesAsync();
         }
         // task 7: lehessen logikailag törölni
-        public int DeleteSemester(int id)
+        public async Task DeleteSemester(int id)
         {
-            Semester semester = _dbContext.Semesters.Find(id);
-            semester.Deleted = true;
-            _dbContext.Semesters.Update(semester);
-            return _dbContext.SaveChanges();
+            Semester semester = await _unitOfWork.GetRepository<Semester>().DeleteSoft(id);
+            await _unitOfWork.SaveChangesAsync();
         }
         // task 7: lehessen logikailag törölni
-        public int DeleteStudent(int id)
+        public async Task DeleteStudent(int id)
         {
-            Student student = _dbContext.Students.Find(id);
-            student.Deleted = true;
-            _dbContext.Students.Update(student);
-            return _dbContext.SaveChanges();
+            Student student = await _unitOfWork.GetRepository<Student>().DeleteSoft(id);
+            await _unitOfWork.SaveChangesAsync();
         }
         // task 7: Készítse el továbbá a szükséges végpontokat ahhoz, hogy az adatok egymással összerendelhetőek legyenek.
         public int MapStudentSubject(int StudentId, int SubjectId)
