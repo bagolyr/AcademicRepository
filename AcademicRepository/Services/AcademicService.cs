@@ -311,7 +311,7 @@ namespace _2022_09_23.Services
 
             return strings;
         }
-        // Lehessen lekérni, egy listát, amely tartalmazza, hogy megadott félévben a megadott oktató
+        // task 11: Lehessen lekérni, egy listát, amely tartalmazza, hogy megadott félévben a megadott oktató
         // összesen mennyi kreditértékű tantárgyat oktatott és összesen hány hallgató volt ezeken a
         // tantárgyakon(egy hallgató csak egyszer legyen összeszámolva, hiába oktatta több tárgyon is az oktató).
         public string ListCreditsAndStudentsOfTeachers(int teacherId, int SemesterId)

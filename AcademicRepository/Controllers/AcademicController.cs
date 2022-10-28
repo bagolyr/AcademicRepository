@@ -47,48 +47,48 @@ namespace _2022_09_23.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateTeacher([FromBody] Teacher teacher) // task 7: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
+        public IActionResult createteacher([FromBody] Teacher teacher) // task 7: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
         {
             return Ok(_academicService.CreateTeacher(teacher));
         }
 
         [HttpPost]
-        public IActionResult CreateSubject([FromBody] Subject subject/*, string Description*/) // task 7, 9: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
+        public IActionResult createsubject([FromBody] Subject subject/*, string Description*/) // task 7, 9: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
         {
             return Ok(_academicService.CreateSubject(subject));
         }
 
         [HttpPost]
-        public IActionResult CreateSemester([FromBody] Semester semester) // task 7: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
+        public IActionResult createsemester([FromBody] Semester semester) // task 7: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
         {
             return Ok(_academicService.CreateSemester(semester));
         }
 
         [HttpPost]
-        public IActionResult CreateStudent([FromBody] Student student) // task 7: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
+        public IActionResult createstudent([FromBody] Student student) // task 7: Lehessen új oktatót, tantárgyat, félévet és hallgatót felvinni a rendszerbe
         {
             return Ok(_academicService.CreateStudent(student));
         }
         [HttpPost]
-        public IActionResult UpdateTeacher([FromBody] Teacher teacher) // task 7: lehessen módosítani
+        public IActionResult updateteacher([FromBody] Teacher teacher) // task 7: lehessen módosítani
         {
             return Ok(_academicService.UpdateTeacher(teacher));
         }
 
         [HttpPost]
-        public IActionResult UpdateSubject([FromBody] Subject subject) // task 7, 9: lehessen módosítani
+        public IActionResult updatesubject([FromBody] Subject subject) // task 7, 9: lehessen módosítani
         {
             return Ok(_academicService.UpdateSubject(subject));
         }
 
         [HttpPost]
-        public IActionResult UpdateSemester([FromBody] Semester semester) // task 7: lehessen módosítani
+        public IActionResult updatesemester([FromBody] Semester semester) // task 7: lehessen módosítani
         {
             return Ok(_academicService.UpdateSemester(semester));
         }
 
         [HttpPost]
-        public IActionResult UpdateStudent([FromBody] Student student) // task 7: lehessen módosítani
+        public IActionResult updatestudent([FromBody] Student student) // task 7: lehessen módosítani
         {
             return Ok(_academicService.UpdateStudent(student));
         }
