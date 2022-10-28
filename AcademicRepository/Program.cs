@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITrainCarService, TrainCarService>();
 builder.Services.AddScoped<IAcademicService, AcademicService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ISubjectUnitOfWork, SubjectUnitOfWork>();
 
 builder.Services.AddDbContext<TrainCar2DbContext>(options =>
 {

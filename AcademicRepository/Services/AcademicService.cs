@@ -31,6 +31,7 @@ namespace _2022_09_23.Services
         int MapSubjectTeacher(int SubjectId, int TeacherId); // task 7
         List<string> ListStudentsOfTeachers(int teacherId, int SemesterId); // task 10
         string ListCreditsAndStudentsOfTeachers(int teacherId, int SemesterId); // task 11
+        List<Subject> GetSubjectsByTimeInterval(string from, string to); // task 13
     }
     public class AcademicService : IAcademicService
     {
@@ -38,10 +39,13 @@ namespace _2022_09_23.Services
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public AcademicService(Academic3DbContext dbContext, IUnitOfWork unitOfWork)
+        private readonly ISubjectUnitOfWork _subjectUnitOfWork;
+
+        public AcademicService(Academic3DbContext dbContext, IUnitOfWork unitOfWork, ISubjectUnitOfWork subjectUnitOfWork)
         {
             _dbContext = dbContext;
             _unitOfWork = unitOfWork;
+            _subjectUnitOfWork = subjectUnitOfWork;
         }
         // task 4 Az alkalmazásban lehessen listázni az összes tantárgyat, oktatót, hallgatót, félévet külön-külön végpontokon.
         public List<Subject> ListSubjects(string showDeleted)
@@ -348,6 +352,11 @@ namespace _2022_09_23.Services
             string return_value = "Teacher name: " + teacher.Name + ", Student counter: " + student_counter + ", Sum of credits: " + credit_counter;
 
             return return_value;
+        }
+
+        public List<Subject> GetSubjectsByTimeInterval(string from, string to)
+        {
+            return _subjectUnitOfWork.GetSubjectsByTimeInterval(from, to);
         }
     }
 }

@@ -122,5 +122,10 @@ namespace _2022_09_23.Controllers
         {
             return Ok(_academicService.ListCreditsAndStudentsOfTeachers(id, SemesterId));
         }
+        [HttpGet("{from}/{to}")]
+        public IActionResult subjectsbytimeinterval(string from, string to) // task 4 Az alkalmazásban lehessen listázni az összes tantárgyat, oktatót, hallgatót, félévet külön-külön végpontokon.
+        {
+            return Ok(_academicService.GetSubjectsByTimeInterval(from, to));
+        }
     }
 }
