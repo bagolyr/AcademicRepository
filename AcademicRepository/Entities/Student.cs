@@ -11,10 +11,17 @@ namespace _2022_09_23.Entities
         {
             this.Subjects = new HashSet<Subject>();
         }
+        [Required]
+        [MaxLength(6)]
         public string NeptunCode { get; set; }
+        [Required]
+        [MaxLength(250)]
         public string Name { get; set; }
+        [Required]
+        [MaxLength(250)]
         public string EmailAddress { get; set; }
         public int SpecialityId { get; set; }
+        [ForeignKey("SpecialityId")]
         public Speciality Speciality { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
     }
