@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using _2022_09_23.Attributes;
 
 namespace _2022_09_23.Entities
 {
@@ -12,7 +13,8 @@ namespace _2022_09_23.Entities
             this.Subjects = new HashSet<Subject>();
         }
         [Required]
-        [MaxLength(6)]
+        //[MaxLength(6)]
+        [NeptunCodeValidationAttribute]
         public string NeptunCode { get; set; }
         [Required]
         [MaxLength(250)]
