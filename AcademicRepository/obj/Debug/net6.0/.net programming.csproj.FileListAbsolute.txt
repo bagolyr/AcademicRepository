@@ -120,3 +120,4 @@ C:\Users\hp\source\repos\AcademicRepository\AcademicRepository\obj\Debug\net6.0\
 C:\Users\hp\source\repos\AcademicRepository\AcademicRepository\obj\Debug\net6.0\.net programming.pdb
 C:\Users\hp\source\repos\AcademicRepository\AcademicRepository\obj\Debug\net6.0\.net programming.genruntimeconfig.cache
 C:\Users\hp\source\repos\AcademicRepository\AcademicRepository\obj\Debug\net6.0\ref\.net programming.dll
+C:\Users\hp\source\repos\AcademicRepository\AcademicRepository\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll

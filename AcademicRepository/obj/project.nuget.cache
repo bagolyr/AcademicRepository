@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0fI/oh5R+Orhj/GyAFztuwe0BJn90JRUzqd/8jMGl0BzsszUxZ8wrj45kHLW2UYOY9HaV4CyZ92xGpsCECFgOg==",
+  "dgSpecHash": "+iaKCnn8XdZRn7dYJemV5NM+n2kRV84wD81lN/88Ma/GtC0Xa/326TDTqhp5DWgTZkY5qNRb5JCD0avlYqWL+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\hp\\source\\repos\\AcademicRepository\\AcademicRepository\\.net programming.csproj",
   "expectedPackageFiles": [
@@ -30,6 +30,7 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.8.0\\microsoft.identitymodel.protocols.6.8.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.io.recyclablememorystream\\2.2.1\\microsoft.io.recyclablememorystream.2.2.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",

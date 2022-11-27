@@ -1,10 +1,14 @@
 using _2022_09_23.Entities.DbContextNamespace;
+using _2022_09_23.Middleware;
 using _2022_09_23.Services;
 using _2022_09_23.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -41,6 +45,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
