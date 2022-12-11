@@ -14,7 +14,7 @@ namespace _2022_09_23.Attributes
                 //Check neptun code length
                 if (formattedNeptunCode.Length != NEPTUN_CODE_LENGTH)
                 {
-                    return new ValidationResult("Neptun code should contain " + NEPTUN_CODE_LENGTH + " number!");
+                    return new ValidationResult("Neptun code should contain " + NEPTUN_CODE_LENGTH + " character!");
                 }
                 int ok_counter = 0;
                 for (int i = 0; i < formattedNeptunCode.Length - 1; i++)
@@ -49,10 +49,10 @@ namespace _2022_09_23.Attributes
                 {
                     return ValidationResult.Success;
                 }
-                return new ValidationResult("Wrong tracknumber!");
+                return new ValidationResult("Wrong Neptun code!");
             }
 
-            return new ValidationResult("Wrong tracknumber!");
+            return new ValidationResult("Wrong Neptun code!");
         }
     }
 }
