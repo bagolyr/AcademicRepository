@@ -4,6 +4,10 @@ using _2022_09_23.Attributes;
 
 namespace _2022_09_23.Entities
 {
+    // Task 26. Használja a modell validációs attribútumokat a modelljeinek property-jein. A property-ket
+    // próbálja értelemszerűen ellátni ezekkel az attribútumokkal.
+    // Task 27. Készítsen custom modell validációs attribútumot a Neptun kódhoz.A Neptun kód pontosan 6
+    // karakterből áll, csak számokat vagy betűket tartalmazhat, és nem kezdődhet számmal.
     public class Teacher : AbstractEntity
     {
         public Teacher()
