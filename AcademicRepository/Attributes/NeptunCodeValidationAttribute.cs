@@ -2,6 +2,8 @@
 
 namespace _2022_09_23.Attributes
 {
+    // Task 27: Készítsen custom modell validációs attribútumot a Neptun kódhoz.A Neptun kód pontosan 6
+    // karakterből áll, csak számokat vagy betűket tartalmazhat, és nem kezdődhet számmal
     public class NeptunCodeValidationAttribute : ValidationAttribute
     {
         private readonly static int NEPTUN_CODE_LENGTH = 6;
