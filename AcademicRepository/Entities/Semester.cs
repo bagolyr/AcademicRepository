@@ -2,6 +2,8 @@
 
 namespace _2022_09_23.Entities
 {
+    // Task 26. Használja a modell validációs attribútumokat a modelljeinek property-jein. A property-ket
+    // próbálja értelemszerűen ellátni ezekkel az attribútumokkal.
     public class Semester : AbstractEntity
     {
         [Required]
