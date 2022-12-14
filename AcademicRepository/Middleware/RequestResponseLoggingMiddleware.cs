@@ -8,6 +8,13 @@ using Microsoft.IO;
 
 namespace _2022_09_23.Middleware
 {
+    // Task 23. Request logging témakörben tanultak alapján írassa ki a konzolra/fájlba a beérkező kéréseket,
+    // de csak azokat, amelyek megkövetelik az authorizációt.A logban legalább a következő adatok:
+    //   a.A kérés http metódusa
+    //   b.A kérés végponjának neve
+    //   c.A kérés törzse JSON vagy XML formátumban
+    //   d.A kérést indító felhasználó azonosítója -> not implemented
+    //   e.A kérést indító felhasználó neve -> not implemented
     public class RequestResponseLoggingMiddleware
     {
         private readonly RequestDelegate _next;
